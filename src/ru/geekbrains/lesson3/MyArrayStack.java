@@ -50,10 +50,14 @@ public class MyArrayStack<Item> {
     }
 
     public String toString() {
+        return this.toString("");
+    }
+
+    public String toString(String splitter) {
         StringBuilder s = new StringBuilder();
         for (int i = size - 1; i >= 0 ; i--) {
             s.append(((Item) stack[i]).toString());
-            s.append(", ");
+            s.append(splitter);
         }
         return s.toString();
     }
