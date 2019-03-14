@@ -2,8 +2,40 @@ package ru.geekbrains.lesson5;
 
 public class Program {
     public static void main(String[] args) {
-        System.out.println(productRec(7, 1));
+        System.out.println(expRec(2,8));
+        System.out.println(exp(2,8));
     }
+
+    //1. Написать программу по возведению числа в степень с помощью рекурсии и с помощью циклического оператора.
+    //a^b = (a * a * a * ... * a) b раз =
+    //f(a, b) = f(a, b - 1) * a
+
+    public static int expRec(int a, int b){
+        if(b == 0){
+            return 1;
+        }
+        else if (b == 1) {
+            return a;
+        }
+        else if (b % 2 == 1){
+            return expRec(a, b-1) * a;
+        }
+        else {
+            int n = expRec(a, b/2);
+            return n * n;
+        }
+    }
+
+
+    public static int exp(int a, int b) {
+        int res = a;
+        while (b > 1){
+            res *= a;
+            b--;
+        }
+        return res;
+    }
+
 
     //5. Даны два целых неотрицательных числа a и b. Без использования операции умножения,
     //найти произведение числа a и b.
