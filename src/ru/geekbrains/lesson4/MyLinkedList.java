@@ -135,10 +135,22 @@ public class MyLinkedList<Item> implements Iterable<Item> {
         }
         int currentIndex = 0;
         Node current = first;
-        while (currentIndex < index) {
-            current = current.next;
-            currentIndex++;
+
+        if(index <= size/2) {
+            while (currentIndex < index) {
+                current = current.next;
+                currentIndex++;
+            }
+        } else if(index > size/2) {
+            currentIndex = size-1;
+            current = last;
+            while (currentIndex > index) {
+                current = current.previous;
+                currentIndex--;
+            }
         }
+
+
         return current.item;
     }
 
@@ -148,9 +160,19 @@ public class MyLinkedList<Item> implements Iterable<Item> {
         }
         int currentIndex = 0;
         Node current = first;
-        while (currentIndex < index) {
-            current = current.next;
-            currentIndex++;
+
+        if(index <= size/2) {
+            while (currentIndex < index) {
+                current = current.next;
+                currentIndex++;
+            }
+        } else if(index > size/2) {
+            currentIndex = size-1;
+            current = last;
+            while (currentIndex > index) {
+                current = current.previous;
+                currentIndex--;
+            }
         }
         current.item = item;
     }

@@ -1,6 +1,8 @@
 package ru.geekbrains.lesson4;
 
-public class Program {
+import java.util.Iterator;
+
+public class LinkIteratorApp {
     public static void main(String[] args) {
         MyLinkedList<Character> list = new MyLinkedList<>();
         list.addLast('a');
@@ -10,11 +12,11 @@ public class Program {
         list.addLast('e');
         list.addLast('f');
         list.addLast('g');
-        System.out.println(list);
-        System.out.println(list.get(5));
-        list.set(2, 't');
-        System.out.println(list);
-        list.set(4, 't');
-        System.out.println(list);
+
+        Iterator<Character> iter = list.iterator();
+        while (iter.hasNext()) {
+            System.out.println(iter.next());
+        }
+
     }
 }
