@@ -1,3 +1,5 @@
+package ru.geekbrains.lesson8;
+
 public class MyChainingHashMap<Key, Value> {
     private int M = 7;
     private int size = 0;

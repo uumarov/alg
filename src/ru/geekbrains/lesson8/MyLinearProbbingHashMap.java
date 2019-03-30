@@ -1,3 +1,5 @@
+package ru.geekbrains.lesson8;
+
 public class MyLinearProbbingHashMap<Key, Value> {
     private int M = 97;
     private int size = 0;
