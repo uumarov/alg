@@ -21,15 +21,31 @@ public class DepthFirstPaths {
     }
 
     private void dfs(Graph g, int v) {
+        LinkedList<Integer> stack = new LinkedList<>();
         marked[v] = true;
-        for (int w:
-             g.adjList(v)) {
-            if (!marked[w]) {
-                edgeTo[w] = v;
-                dfs(g, w);
+        stack.push(v);
+        while (!stack.isEmpty()){
+            int vertex = getNextUnmarked(g, stack.peek());
+            if(vertex == -1) {
+                stack.pop();
+            } else {
+                marked[vertex] = true;
+                stack.push(vertex);
             }
         }
+
     }
+
+    private int getNextUnmarked(Graph g,int v){
+        for (int w: g.adjList(v)) {
+            if (!marked[w]) {
+                edgeTo[w] = v;
+                return w;
+            }
+        }
+        return -1;
+    }
+
 
     public boolean hasPathTo(int dist) {
         if (dist < 0) {
