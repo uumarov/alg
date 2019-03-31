@@ -1,7 +1,7 @@
 package ru.geekbrains.lesson8;
 
 public class MyChainingHashMap<Key, Value> {
-    private int M = 97;
+    private int M = 1;
     private int size = 0;
     private Object[] st = new Object[M];
     private class Node {
@@ -41,6 +41,33 @@ public class MyChainingHashMap<Key, Value> {
             x = x.next;
         }
         return null;
+    }
+
+    public Value remove(Key key){
+        if (key == null) {
+            throw new IllegalArgumentException("Ключ не может равняться null");
+        }
+        int i = hash(key);
+        Node current = (Node) st[i];
+
+        while (current != null) {
+            if (key.equals(current.key)) {
+                Value value = current.value;
+                st[i] = current.next;
+                size--;
+                return value;
+            }
+            if (current.next != null && key.equals(current.next.key)){
+                Value value = current.next.value;
+                current.next = current.next.next;
+                size--;
+                return value;
+            }
+            current = current.next;
+        }
+
+        return null;
+
     }
 
     public boolean contains(Key key) {

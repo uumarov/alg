@@ -1,7 +1,7 @@
 package ru.geekbrains.lesson8;
 
 public class MyLinearProbbingHashMap<Key, Value> {
-    private int M = 97;
+    private int M = 15;
     private int size = 0;
     private Object[] keys = new Object[M];
     private Object[] values = new Object[M];
@@ -16,6 +16,10 @@ public class MyLinearProbbingHashMap<Key, Value> {
     
     private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % M;
+    }
+
+    private int doubleHash(Key key) {
+        return 17 - (key.hashCode() & 0x7fffffff) % 17;
     }
     
     public Value get(Key key) {
@@ -42,7 +46,8 @@ public class MyLinearProbbingHashMap<Key, Value> {
             throw new IndexOutOfBoundsException("Достигнуто наибольшое количество элеменотов в коллекции.");
         }
         int i;
-        for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
+        int j;
+        for (i = hash(key), j = doubleHash(key); keys[i] != null; i += j, i %= M) {
             if (((Key)keys[i]).equals(key)) {
                 values[i] = value;
                 return;
