@@ -1,7 +1,7 @@
 package ru.geekbrains.lesson8;
 
 public class MyChainingHashMap<Key, Value> {
-    private int M = 7;
+    private int M = 97;
     private int size = 0;
     private Object[] st = new Object[M];
     private class Node {
